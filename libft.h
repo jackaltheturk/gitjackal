@@ -6,7 +6,7 @@
 /*   By: etorun <etorun@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 19:57:31 by etorun            #+#    #+#             */
-/*   Updated: 2024/10/13 16:07:49 by etorun           ###   ########.fr       */
+/*   Updated: 2024/10/13 16:49:13 by etorun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,4 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 char	*ft_strchr(const char *s, int c);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
