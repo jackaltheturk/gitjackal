@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etorun <etorun@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/12 16:45:59 by etorun            #+#    #+#             */
-/*   Updated: 2024/10/13 13:59:37 by etorun           ###   ########.fr       */
+/*   Created: 2024/10/13 15:27:30 by etorun            #+#    #+#             */
+/*   Updated: 2024/10/13 16:34:18 by etorun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int c)
+#include "libft.h"
+
+char	*ft_strchr(const char *s, int c)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c - 32);
-	return (c);
+	int	counter;
+
+	counter = 0;
+	if ((char)c == '\0')
+		return ((char *)&s[ft_strlen(s)]);
+	while (s[counter])
+	{
+		if (s[counter] == (char)c)
+			return (((char *)&s[counter]));
+		counter++;
+	}
+	return (NULL);
 }
