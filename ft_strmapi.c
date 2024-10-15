@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etorun <etorun@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/13 16:47:54 by etorun            #+#    #+#             */
-/*   Updated: 2024/10/15 20:09:49 by etorun           ###   ########.fr       */
+/*   Created: 2024/10/15 21:44:42 by etorun            #+#    #+#             */
+/*   Updated: 2024/10/15 21:44:46 by etorun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	while (*s1 != '\0' && *s1 == *s2 && n > 0)
+	unsigned int	i;
+	char			*str;
+
+	if (!s)
+		return (NULL);
+	i = 0;
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s)) + 1);
+	if (str == NULL)
+		return (NULL);
+	while (s[i])
 	{
-		s1++;
-		s2++;
-		n--;
+		str[i] = f(i, s[i]);
+		i++;
 	}
-	if (n == 0)
-		return (0);
-	return (*(unsigned char *)s1 - *(unsigned char *)s2);
+	str[i] = '\0';
+	return (str);
 }
