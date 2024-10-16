@@ -6,19 +6,13 @@
 /*   By: etorun <etorun@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:28:32 by etorun            #+#    #+#             */
-/*   Updated: 2024/10/09 20:25:45 by etorun           ###   ########.fr       */
+/*   Updated: 2024/10/16 10:16:58 by etorun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int	ft_isalnum(int c)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')
-		|| (c >= '0' && c <= '9'))
-	{
-		return (1);
-	}
-	else
-	{
-		return (0);
-	}
+	return (ft_isalpha(c) || ft_isdigit(c));
 }
