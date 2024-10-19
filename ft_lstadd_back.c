@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etorun <etorun@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 22:59:36 by etorun            #+#    #+#             */
-/*   Updated: 2024/10/19 11:38:48 by etorun           ###   ########.fr       */
+/*   Created: 2024/10/19 11:36:32 by etorun            #+#    #+#             */
+/*   Updated: 2024/10/19 11:38:52 by etorun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if (!new)
-		return ;
-	new->next = *lst;
-	*lst = new;
+	t_list	*ptr;
+
+	if (*lst == NULL)
+		*lst = new;
+	else
+	{
+		ptr = *lst;
+		while (ptr->next != NULL)
+			ptr = ptr->next;
+		ptr->next = new;
+	}
 }
