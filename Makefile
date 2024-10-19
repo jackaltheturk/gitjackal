@@ -7,17 +7,26 @@ SRC = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \
 	ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c \
 	ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c \
 	ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
-all: $(NAME)
 
-$(NAME):
+BONUS = ft_lstnew.c ft_lstadd_front.c int ft_lstsize.c
+
+all: libft.a
+
+libft.a:
 	gcc $(FLAG) -c $(SRC)
 	ar rc $(NAME) *.o
+	rm -f *.o
 clean:
-	/bin/rm -f *.o
+	rm -f *.o
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
+
+bonus:
+	gcc $(FLAG) -c $(SRC) $(BONUS)
+	ar rc $(NAME) *.o
+	rm -f *.o
 
 .PHONY: all clean fclean re
