@@ -6,7 +6,7 @@
 /*   By: etorun <etorun@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 12:18:31 by etorun            #+#    #+#             */
-/*   Updated: 2024/10/16 10:31:23 by etorun           ###   ########.fr       */
+/*   Updated: 2024/10/22 17:47:39 by etorun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	d_len;
-	size_t	s_len;
-	size_t	copy_len;
+	size_t	i;
+	size_t	ret;
 
-	d_len = ft_strlen(dst);
-	s_len = ft_strlen(src);
-	copy_len = dstsize - d_len - 1;
-	if (dstsize <= d_len)
-		return (dstsize + s_len);
-	if (copy_len > s_len)
-		copy_len = s_len;
-	ft_memcpy(dst + d_len, src, copy_len);
-	dst[d_len + copy_len] = '\0';
-	return (d_len + s_len);
+	i = 0;
+	while (*dst && i < dstsize)
+	{
+		++dst;
+		++i;
+	}
+	ret = ft_strlcpy(dst, src, dstsize - i);
+	return (ret + i);
 }

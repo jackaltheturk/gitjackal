@@ -6,7 +6,7 @@
 /*   By: etorun <etorun@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 10:11:06 by etorun            #+#    #+#             */
-/*   Updated: 2024/10/15 10:34:43 by etorun           ###   ########.fr       */
+/*   Updated: 2024/10/22 17:49:42 by etorun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	ft_memcmp(const void *str1, const void *str2, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		if (((int)((unsigned char *)str1)[i] != ((unsigned char *)str2)[i]))
-			return ((int)((unsigned char *)str1)[i]
+		if ((((unsigned char *)str1)[i] != ((unsigned char *)str2)[i]))
+			return (((unsigned char *)str1)[i]
 				- ((unsigned char *)str2)[i]);
 		i++;
 	}
