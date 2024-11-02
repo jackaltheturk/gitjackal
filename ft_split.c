@@ -6,84 +6,84 @@
 /*   By: etorun <etorun@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:37:03 by etorun            #+#    #+#             */
-/*   Updated: 2024/10/15 21:38:13 by etorun           ###   ########.fr       */
+/*   Updated: 2024/11/02 13:33:56 by etorun           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_count_words(char const *s, char c)
+static char	**ft_free_tb(char **tab, size_t wc)
 {
-	int	i;
-	int	count;
+	size_t	i;
 
 	i = 0;
-	count = 0;
-	while (s[i])
+	while (i < wc)
 	{
-		if (s[i] == c)
-			i++;
-		else
-		{
-			count++;
-			while (s[i] && s[i] != c)
-				i++;
-		}
-	}
-	return (count);
-}
-
-static char	*ft_make_words(char *word, char const *s, int j, int word_ln)
-{
-	int	i;
-
-	i = 0;
-	while (word_ln > 0)
-		word[i++] = s[j - word_ln--];
-	word[i] = 0;
-	return (word);
-}
-
-static char	**ft_split_words(char **res, char const *s, char c, int word_ct)
-{
-	int	i;
-	int	j;
-	int	word_ln;
-
-	i = 0;
-	j = 0;
-	word_ln = 0;
-	while (s[j] && i < word_ct)
-	{
-		while (s[j] && s[j] == c)
-			j++;
-		while (s[j] && s[j] != c)
-		{
-			j++;
-			word_ln++;
-		}
-		res[i] = (char *)malloc(sizeof(char) * (word_ln + 1));
-		if (!res[i])
-			return (0);
-		ft_make_words(res[i], s, j, word_ln);
-		word_ln = 0;
+		free(tab[i]);
 		i++;
 	}
-	res[i] = 0;
-	return (res);
+	free(tab);
+	return (NULL);
+}
+
+static size_t	ft_word_count(char const *s, char c)
+{
+	int	curs;
+	int	wc;
+
+	wc = 0;
+	curs = 0;
+	if (!s)
+		return (0);
+	while (s[curs])
+	{
+		while (s[curs] == c)
+			curs++;
+		if (s[curs])
+			wc++;
+		while (s[curs] != c && s[curs])
+			curs++;
+	}
+	return (wc);
+}
+
+static void	ft_just_pass_the_word(const char *s, size_t *f_curs, char c)
+{
+	while (s[*f_curs] && s[*f_curs] != c)
+		(*f_curs)++;
+}
+
+static void	ft_just_pass_the_char(const char *s, size_t *f_curs, char c)
+{
+	while (s[*f_curs] == c)
+		(*f_curs)++;
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		word_ct;
-	char	**res;
+	size_t	f_curs;
+	size_t	s_curs;
+	size_t	wc;
+	char	**tab;
 
-	if (s == 0)
-		return (0);
-	word_ct = ft_count_words(s, c);
-	res = (char **)malloc(sizeof(char *) * (word_ct + 1));
-	if (!res)
-		return (0);
-	ft_split_words(res, s, c, word_ct);
-	return (res);
+	f_curs = 0;
+	wc = 0;
+	tab = malloc(sizeof(char *) * (ft_word_count(s, c) + 1));
+	if (!s || !tab)
+		return (ft_free_tb(tab, wc));
+	while (s[f_curs])
+	{
+		ft_just_pass_the_char(s, &f_curs, c);
+		s_curs = f_curs;
+		ft_just_pass_the_word(s, &f_curs, c);
+		if (f_curs > s_curs)
+		{
+			tab[wc] = ft_substr(s, s_curs, f_curs - s_curs);
+			if (!tab[wc])
+				return (ft_free_tb(tab, wc));
+			wc++;
+		}
+	}
+	tab[wc] = (char *) NULL;
+	return (tab);
 }

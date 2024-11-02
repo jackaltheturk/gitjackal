@@ -8,9 +8,6 @@ SRC = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \
 	ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c \
 	ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
 
-BONUS = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c \
-	ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c \
-
 all: $(NAME) clean
 
 $(NAME):
@@ -20,14 +17,9 @@ $(NAME):
 clean:
 	rm -f *.o
 
-fclean: clean
+fclean:
 	rm -f $(NAME)
 
-re: fclean all
-
-bonus:
-	gcc $(FLAG) -c $(SRC) $(BONUS)
-	ar rc $(NAME) *.o
-	rm -f *.o
+re: fclean $(NAME) clean
 
 .PHONY: all clean fclean re
