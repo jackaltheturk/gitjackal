@@ -11,15 +11,15 @@ SRC = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \
 all: $(NAME) clean
 
 $(NAME):
-	gcc $(FLAG) -c $(SRC)
+	cc $(FLAG) -c $(SRC)
 	ar rc $(NAME) *.o
 	
 clean:
 	rm -f *.o
 
-fclean:
+fclean: clean
 	rm -f $(NAME)
 
-re: fclean $(NAME) clean
+re: fclean $(NAME)
 
 .PHONY: all clean fclean re
