@@ -1,17 +1,20 @@
-/* *************************************************************************** */
-/*                                                                             */
-/*                                                         :::      ::::::::   */
-/*  ft_libft.h                                           :+:      :+:    :+:   */
-/*                                                     +:+ +:+         +:+     */
-/*  By: etorun <etorun@student.42istanbul.com.tr>    +#+  +:+       +#+        */
-/*                                                 +#+#+#+#+#+   +#+           */
-/*  Created: 2024/11/23 08:34:18 by etorun              #+#    #+#             */
-/*  Updated: 2024/11/23 08:35:36 by etorun             ###   ########.fr       */
-/*                                                                             */
-/* *************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: etorun <etorun@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/23 11:48:54 by etorun            #+#    #+#             */
+/*   Updated: 2024/11/23 12:46:06 by etorun           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "stdlib.h"
-#include <unistd.h>
+#ifndef LIBFT_H
+# define LIBFT_H
+
+# include <stdlib.h>
+# include <unistd.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -62,3 +65,4 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 int		ft_lstsize(t_list *lst);
+#endif
